@@ -1,1 +1,17 @@
+name: Build
 
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: "echo test > dist/test.txt"
+      - name: Create zip bundle
+        run: "zip -r EagOS.zip"
+      - name: Publish
+        env:
+            GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
+        run: |
+            gh release create ${{ github.event.push.commits[0].id }} EagOS.zip -d -R https://github.com/EagOS/EagOS
