@@ -12,6 +12,6 @@ jobs:
         run: zip -r EagOS.zip dist
       - name: Publish
         env:
-            GITHUB_TOKEN: "${{ github.token }}"
+            GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
         run: |
             gh release create devbuild EagOS.zip -R https://github.com/EagOS/EagOS-source
