@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build
-        run: cat dist/test.txt && echo "test" > dist/test.txt
+        run: touch dist/test.txt && echo "test" > dist/test.txt
       - name: Create zip bundle
         run: zip -r EagOS.zip
       - name: Publish
