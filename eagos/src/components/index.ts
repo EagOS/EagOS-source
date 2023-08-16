@@ -1,1 +1,3 @@
-export {};
+import Desktop from './Desktop';
+
+export { Desktop };

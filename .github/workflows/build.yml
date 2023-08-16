@@ -6,12 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Add pnpm
+        run: npm install -g pnpm
+      - name: Install Dependencies
+        run: pnpm install
       - name: Build
-        run: mkdir dist && echo "test" > dist/test.txt
+        run: pnpm build
       - name: Create zip bundle
         run: zip -r EagOS.zip dist
       - name: Publish
         env:
             GITHUB_TOKEN: "${{ secrets.RELEASE_REPO_SECRET }}"
         run: |
-            gh release create devbuild EagOS.zip -R https://github.com/EagOS/EagOS-source
+            gh release edit devbuild EagOS.zip -R https://github.com/EagOS/EagOS-source
